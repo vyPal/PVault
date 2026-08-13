@@ -1,0 +1,14 @@
+[package]
+name = "pvault-core"
+description = "Ledger and request dispatch behind the PVault economy plugin"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+pvault-proto.workspace = true
+prost.workspace = true
+serde.workspace = true
+serde_json.workspace = true

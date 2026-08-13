@@ -1,0 +1,13 @@
+[package]
+name = "proto-gen"
+description = "Regenerates the checked-in prost bindings for pvault-proto"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license = "0BSD"
+repository.workspace = true
+publish = false
+
+[dependencies]
+prost-build = "0.14"
+protox = "0.9"

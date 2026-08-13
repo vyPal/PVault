@@ -1,0 +1,161 @@
+// PVault economy IPC API.
+//
+// This file is the normative wire contract. Send an encoded `Request` to the plugin
+// named "PVault" via the Pumpkin plugin IPC host call; you get back an encoded `Response`.
+// See docs/spec/economy-v1.md for the semantics of each message.
+
+syntax = "proto3";
+
+package pvault.economy.v1;
+
+// Semantic version of the spec a message was built against. Matches the PVault
+// plugin version. Present on every request and response.
+message Version {
+  uint32 major = 1;
+  uint32 minor = 2;
+  uint32 patch = 3;
+}
+
+// Identifies an account. `player` is a 16-byte big-endian UUID; `named` is a
+// "namespace:key" string owned by the plugin that created it.
+message AccountId {
+  oneof kind {
+    bytes player = 1;
+    string named = 2;
+  }
+}
+
+message Request {
+  Version version = 1;
+
+  oneof body {
+    GetCurrency get_currency = 16;
+    GetBalance get_balance = 17;
+    HasBalance has_balance = 18;
+    Deposit deposit = 19;
+    Withdraw withdraw = 20;
+    Transfer transfer = 21;
+    SetBalance set_balance = 22;
+    CreateAccount create_account = 23;
+    AccountExists account_exists = 24;
+    DeleteAccount delete_account = 25;
+  }
+}
+
+message Response {
+  Version version = 1;
+
+  oneof body {
+    Error error = 2;
+    CurrencyInfo currency = 16;
+    Balance balance = 17;
+    HasBalanceResult has_balance = 18;
+    TransferResult transfer = 21;
+    AccountStatus account = 23;
+  }
+}
+
+// Describes the server's currency. Never assume the fraction digits or symbol.
+message CurrencyInfo {
+  string name = 1;
+  string plural = 2;
+  string symbol = 3;
+  uint32 fraction_digits = 4;
+  int64 starting_balance = 5;
+}
+
+message Error {
+  ErrorCode code = 1;
+  string message = 2;
+  // Current balance of the offending account. Only set for INSUFFICIENT_FUNDS.
+  int64 balance = 3;
+}
+
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED = 0;
+  ERROR_CODE_MALFORMED = 1;
+  ERROR_CODE_VERSION_MISMATCH = 2;
+  ERROR_CODE_UNKNOWN_REQUEST = 3;
+  ERROR_CODE_INVALID_ACCOUNT = 4;
+  ERROR_CODE_ACCOUNT_NOT_FOUND = 5;
+  ERROR_CODE_ACCOUNT_EXISTS = 6;
+  ERROR_CODE_INSUFFICIENT_FUNDS = 7;
+  ERROR_CODE_INVALID_AMOUNT = 8;
+  ERROR_CODE_PERMISSION_DENIED = 9;
+  ERROR_CODE_OVERFLOW = 10;
+  ERROR_CODE_STORAGE_ERROR = 11;
+}
+
+message GetCurrency {}
+
+message GetBalance {
+  AccountId account = 1;
+}
+
+message HasBalance {
+  AccountId account = 1;
+  int64 amount = 2;
+}
+
+message Deposit {
+  AccountId account = 1;
+  int64 amount = 2;
+  // Free-form note recorded in the transaction log.
+  string reason = 3;
+}
+
+message Withdraw {
+  AccountId account = 1;
+  int64 amount = 2;
+  string reason = 3;
+}
+
+message Transfer {
+  AccountId from = 1;
+  AccountId to = 2;
+  int64 amount = 3;
+  string reason = 4;
+}
+
+message SetBalance {
+  AccountId account = 1;
+  int64 amount = 2;
+  string reason = 3;
+}
+
+message CreateAccount {
+  AccountId account = 1;
+  // Defaults to the configured starting balance for players, 0 for named accounts.
+  optional int64 initial_balance = 2;
+}
+
+message AccountExists {
+  AccountId account = 1;
+}
+
+message DeleteAccount {
+  AccountId account = 1;
+}
+
+// Result of any request that leaves an account at a known balance.
+message Balance {
+  AccountId account = 1;
+  int64 amount = 2;
+  // Balance before the change. Equal to `amount` for read-only requests.
+  int64 previous = 3;
+}
+
+message HasBalanceResult {
+  bool sufficient = 1;
+  int64 balance = 2;
+}
+
+message TransferResult {
+  Balance from = 1;
+  Balance to = 2;
+}
+
+message AccountStatus {
+  bool exists = 1;
+  int64 balance = 2;
+}

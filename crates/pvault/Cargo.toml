@@ -1,0 +1,17 @@
+[package]
+name = "pvault"
+description = "A Vault-like central economy plugin"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+pvault-core.workspace = true
+pvault-proto.workspace = true
+pumpkin-plugin-api.workspace = true
+tracing.workspace = true

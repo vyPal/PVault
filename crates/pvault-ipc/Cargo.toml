@@ -1,0 +1,13 @@
+[package]
+name = "pvault-ipc"
+description = "Typed client for talking to the PVault economy plugin over Pumpkin plugin IPC"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license = "0BSD"
+repository.workspace = true
+
+[dependencies]
+pvault-proto.workspace = true
+prost.workspace = true
+pumpkin-plugin-api.workspace = true

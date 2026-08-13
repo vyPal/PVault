@@ -1,0 +1,17 @@
+[package]
+name = "ipc-consumer"
+description = "Example plugin that buys and sells through PVault"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license = "0BSD"
+repository.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+pvault-ipc = { path = "../../crates/pvault-ipc" }
+pumpkin-plugin-api.workspace = true
+tracing.workspace = true

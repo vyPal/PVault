@@ -1,0 +1,11 @@
+[package]
+name = "pvault-proto"
+description = "Protobuf message types for the PVault IPC API"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license = "0BSD"
+repository.workspace = true
+
+[dependencies]
+prost.workspace = true
