@@ -63,34 +63,30 @@ pub fn register(context: &Context) -> Result<()> {
             "money".to_string(),
         ],
         "Show a balance",
-    );
-    balance.then(CommandNode::argument(TARGET, &ArgumentType::Players).execute(BalanceCommand));
-    let balance = balance.execute(BalanceCommand);
+    )
+    .then(CommandNode::argument(TARGET, &ArgumentType::Players).execute(BalanceCommand))
+    .execute(BalanceCommand);
     context.register_command(balance, BALANCE_PERMISSION);
 
-    let pay = Command::new(&["pay".to_string()], "Pay another player");
-    let target = CommandNode::argument(TARGET, &ArgumentType::Players);
-    target.then(amount_node(PayCommand));
-    pay.then(target);
+    let pay = Command::new(&["pay".to_string()], "Pay another player")
+        .then(CommandNode::argument(TARGET, &ArgumentType::Players).then(amount_node(PayCommand)));
     context.register_command(pay, PAY_PERMISSION);
 
-    let eco = Command::new(&["eco".to_string()], "Manage balances");
+    let mut eco = Command::new(&["eco".to_string()], "Manage balances");
     for (verb, action) in [
         ("give", Action::Give),
         ("take", Action::Take),
         ("set", Action::Set),
     ] {
-        let target = CommandNode::argument(TARGET, &ArgumentType::Players);
-        target.then(amount_node(EcoCommand(action)));
-        let literal = CommandNode::literal(verb);
-        literal.then(target);
-        eco.then(literal);
+        let target = CommandNode::argument(TARGET, &ArgumentType::Players)
+            .then(amount_node(EcoCommand(action)));
+        let literal = CommandNode::literal(verb).then(target);
+        eco = eco.then(literal);
     }
-    let reset = CommandNode::literal("reset");
-    reset.then(
+    let reset = CommandNode::literal("reset").then(
         CommandNode::argument(TARGET, &ArgumentType::Players).execute(EcoCommand(Action::Reset)),
     );
-    eco.then(reset);
+    eco = eco.then(reset);
     context.register_command(eco, ECO_PERMISSION);
 
     Ok(())
@@ -170,8 +166,8 @@ impl CommandHandler for PayCommand {
                 let left = format_amount(result.from.map_or(0, |balance| balance.amount))?;
                 reply(&sender, &format!("You now have {left}."), NamedColor::Gray);
 
-                let note = TextComponent::text(&format!("{} paid you {paid}.", sender.get_name()));
-                note.color_named(NamedColor::Green);
+                let note = TextComponent::text(&format!("{} paid you {paid}.", sender.get_name()))
+                    .color_named(NamedColor::Green);
                 target.send_system_message(note, false);
                 Ok(1)
             }
@@ -322,8 +318,7 @@ fn describe(response: &Response) -> String {
 }
 
 fn reply(sender: &CommandSender, message: &str, color: NamedColor) {
-    let text = TextComponent::text(message);
-    text.color_named(color);
+    let text = TextComponent::text(message).color_named(color);
     sender.send_message(text);
 }
 

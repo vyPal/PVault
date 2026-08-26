@@ -2,14 +2,14 @@
 resolver = "3"
 members = ["crates/*", "examples/*", "tools/proto-gen"]
 default-members = [
-    "crates/pvault",
-    "crates/pvault-core",
-    "crates/pvault-ipc",
-    "crates/pvault-proto",
+  "crates/pvault",
+  "crates/pvault-core",
+  "crates/pvault-ipc",
+  "crates/pvault-proto",
 ]
 
 [workspace.package]
-version = "1.0.0"
+version = "1.0.2"
 edition = "2024"
 authors = ["vyPal"]
 license = "GPL-3.0-or-later"
