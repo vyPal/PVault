@@ -190,9 +190,9 @@ checksum = "3d3067d79b975e8844ca9eb072e16b31c3c1c36928edf9c6789548c524d0d954"
 
 [[package]]
 name = "indexmap"
-version = "2.14.0"
+version = "2.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d466e9454f08e4a911e14806c24e16fba1b4c121d1ea474396f396069cf949d9"
+checksum = "07aa2048142242915a31d35844fb311e0e53fcca590c3a0a40dcf1b841fa09eb"
 dependencies = [
  "equivalent",
  "hashbrown 0.17.1",
@@ -202,7 +202,7 @@ dependencies = [
 
 [[package]]
 name = "ipc-consumer"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "pumpkin-plugin-api",
  "pvault-ipc",
@@ -482,7 +482,7 @@ dependencies = [
 
 [[package]]
 name = "proto-gen"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "prost-build",
  "protox",
@@ -518,7 +518,7 @@ dependencies = [
 [[package]]
 name = "pumpkin-plugin-api"
 version = "0.1.0"
-source = "git+https://github.com/Pumpkin-MC/Pumpkin#e42c6d8794164e83d948d25a9bbb2068c8d187d9"
+source = "git+https://github.com/Pumpkin-MC/Pumpkin#0d58f3bfcaffb8bb7d256881bb1650968b51700a"
 dependencies = [
  "postcard",
  "serde_json",
@@ -529,7 +529,7 @@ dependencies = [
 
 [[package]]
 name = "pvault"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "pumpkin-plugin-api",
  "pvault-core",
@@ -539,7 +539,7 @@ dependencies = [
 
 [[package]]
 name = "pvault-core"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "prost",
  "pvault-proto",
@@ -549,7 +549,7 @@ dependencies = [
 
 [[package]]
 name = "pvault-ipc"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "prost",
  "pumpkin-plugin-api",
@@ -558,7 +558,7 @@ dependencies = [
 
 [[package]]
 name = "pvault-proto"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "prost",
 ]

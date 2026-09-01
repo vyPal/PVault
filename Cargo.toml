@@ -9,7 +9,7 @@ default-members = [
 ]
 
 [workspace.package]
-version = "1.0.2"
+version = "1.0.3"
 edition = "2024"
 authors = ["vyPal"]
 license = "GPL-3.0-or-later"
