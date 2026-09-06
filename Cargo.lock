@@ -190,9 +190,9 @@ checksum = "3d3067d79b975e8844ca9eb072e16b31c3c1c36928edf9c6789548c524d0d954"
 
 [[package]]
 name = "indexmap"
-version = "2.14.1"
+version = "2.14.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07aa2048142242915a31d35844fb311e0e53fcca590c3a0a40dcf1b841fa09eb"
+checksum = "cc4e190f5d26ca7051642629da2c52fc03bde85a03197c99408dcd291734c855"
 dependencies = [
  "equivalent",
  "hashbrown 0.17.1",
@@ -202,7 +202,7 @@ dependencies = [
 
 [[package]]
 name = "ipc-consumer"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
  "pumpkin-plugin-api",
  "pvault-ipc",
@@ -482,7 +482,7 @@ dependencies = [
 
 [[package]]
 name = "proto-gen"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
  "prost-build",
  "protox",
@@ -517,8 +517,8 @@ dependencies = [
 
 [[package]]
 name = "pumpkin-plugin-api"
-version = "0.1.0"
-source = "git+https://github.com/Pumpkin-MC/Pumpkin#0d58f3bfcaffb8bb7d256881bb1650968b51700a"
+version = "0.1.0+26.2-26.45"
+source = "git+https://github.com/Pumpkin-MC/Pumpkin#b961f9776036e54c0e4eaaae3e61b39dfd83ed58"
 dependencies = [
  "postcard",
  "serde_json",
@@ -529,7 +529,7 @@ dependencies = [
 
 [[package]]
 name = "pvault"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
  "pumpkin-plugin-api",
  "pvault-core",
@@ -539,7 +539,7 @@ dependencies = [
 
 [[package]]
 name = "pvault-core"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
  "prost",
  "pvault-proto",
@@ -549,7 +549,7 @@ dependencies = [
 
 [[package]]
 name = "pvault-ipc"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
  "prost",
  "pumpkin-plugin-api",
@@ -558,7 +558,7 @@ dependencies = [
 
 [[package]]
 name = "pvault-proto"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
  "prost",
 ]
@@ -662,7 +662,7 @@ checksum = "e7a5d71263a5a7d47b41f6b3f06ba276f10cc18b0931f1799f710578e2309348"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 3.0.4",
+ "syn 3.0.5",
 ]
 
 [[package]]
@@ -706,9 +706,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "3.0.4"
+version = "3.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6275cddf4610d1775e6d1fe9469b2e77d0f39fd98fb7450901b821e0c53649f"
+checksum = "12df2e0110f65b775f769bb17ef989067a1d931b2eb822bd4346631eeada89f9"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -744,7 +744,7 @@ checksum = "bc04cd3e1236dd4a98afca4569f2deb3f120e5422a4023be2cb683f8486292af"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 3.0.4",
+ "syn 3.0.5",
 ]
 
 [[package]]

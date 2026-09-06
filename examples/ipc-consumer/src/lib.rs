@@ -33,7 +33,7 @@ impl Plugin for Consumer {
         }
     }
 
-    fn on_load(&mut self, context: Context) -> Result<()> {
+    fn on_load(&self, context: Context) -> Result<()> {
         let currency = Economy::currency().map_err(|e| e.to_string())?;
         info!(
             "PVault is running with {} ({} decimal places)",
