@@ -9,7 +9,7 @@ default-members = [
 ]
 
 [workspace.package]
-version = "1.0.4"
+version = "1.0.5"
 edition = "2024"
 authors = ["vyPal"]
 license = "GPL-3.0-or-later"
@@ -18,7 +18,7 @@ repository = "https://github.com/vyPal/PVault"
 [workspace.dependencies]
 pvault-core = { path = "crates/pvault-core", version = "1.0.0" }
 pvault-proto = { path = "crates/pvault-proto", version = "1.0.0" }
-pumpkin-plugin-api = { version = "0.1.0", git = "https://github.com/Pumpkin-MC/Pumpkin", package = "pumpkin-plugin-api" }
+pumpkin-plugin-api = { git = "https://github.com/Pumpkin-MC/Pumpkin", package = "pumpkin-plugin-api" }
 prost = "0.14"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
